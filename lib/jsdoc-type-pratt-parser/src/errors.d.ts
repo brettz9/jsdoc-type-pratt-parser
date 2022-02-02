@@ -11,5 +11,5 @@ export declare class EarlyEndOfParseError extends Error {
     getToken(): Token;
 }
 export declare class UnexpectedTypeError extends Error {
-    constructor(result: IntermediateResult);
+    constructor(result: IntermediateResult, message?: string);
 }
