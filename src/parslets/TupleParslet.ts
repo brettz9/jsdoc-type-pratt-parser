@@ -12,9 +12,17 @@ export function createTupleParslet ({ allowQuestionMark }: {
     accept: type => type === '[',
     parsePrefix: parser => {
       parser.consume('[')
+
+      // Capture whitespace that was before the current token (after the '[')
+      const initialWhitespace = parser.lexer.current.whitespace ?? ''
+
       const result: TupleResult = {
         type: 'JsdocTypeTuple',
         elements: []
+      }
+
+      if (initialWhitespace !== '') {
+        result.meta = { bracketSpacing: initialWhitespace.charAt(0) }
       }
 
       if (parser.consume(']')) {

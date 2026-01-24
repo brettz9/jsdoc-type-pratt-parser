@@ -53,6 +53,8 @@ export interface Token {
   line?: number
   column?: number
   startOfLine: boolean
+  /** The whitespace that was trimmed before this token */
+  whitespace?: string
 }
 
 export const baseNameTokens: TokenType[] = [

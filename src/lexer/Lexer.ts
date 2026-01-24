@@ -39,7 +39,7 @@ export class Lexer {
       if (partial !== null) {
         const initialLines = initialWhitespace.split('\n')
         const currentLines = partial.text.split('\n')
-        const token = {
+        const token: Token = {
           ...partial,
           startOfLine,
           reduced: trimmed + partial.text.length,
@@ -49,6 +49,10 @@ export class Lexer {
             ? (initialLines.at(-1)?.length ?? 0) +
               (currentLines.at(-1)?.length ?? 0)
             : (currentLines.at(-1)?.length ?? 0)
+        }
+        // Only add whitespace field if there was actual whitespace
+        if (initialWhitespace !== '') {
+          token.whitespace = initialWhitespace
         }
         text = text.slice(token.text.length)
         return { text, token }

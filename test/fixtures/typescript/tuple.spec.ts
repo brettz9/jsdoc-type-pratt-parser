@@ -109,7 +109,7 @@ describe('typescript tuple tests', () => {
   describe('Tuple with spaces', () => {
     testFixture({
       input: '[ tuple, with, spaces ]',
-      stringified: '[tuple, with, spaces]',
+      stringified: '[ tuple, with, spaces ]',
       expected: {
         type: 'JsdocTypeTuple',
         elements: [
@@ -125,7 +125,10 @@ describe('typescript tuple tests', () => {
             type: 'JsdocTypeName',
             value: 'spaces'
           }
-        ]
+        ],
+        meta: {
+          bracketSpacing: ' '
+        }
       },
       modes: [
         'typescript'
@@ -146,7 +149,7 @@ describe('typescript tuple tests', () => {
   describe('Tuple with spaces', () => {
     testFixture({
       input: '[ tuple, with, trailing, comma, ]',
-      stringified: '[tuple, with, trailing, comma]',
+      stringified: '[ tuple, with, trailing, comma ]',
       expected: {
         type: 'JsdocTypeTuple',
         elements: [
@@ -166,7 +169,10 @@ describe('typescript tuple tests', () => {
             type: 'JsdocTypeName',
             value: 'comma'
           }
-        ]
+        ],
+        meta: {
+          bracketSpacing: ' '
+        }
       },
       modes: [
         'typescript'
@@ -346,7 +352,7 @@ describe('typescript tuple tests', () => {
   describe('Tuple with typeof and keyof', () => {
     testFixture({
       input: '[ tuple, with, typeof foo, and, keyof foo]',
-      stringified: '[tuple, with, typeof foo, and, keyof foo]',
+      stringified: '[ tuple, with, typeof foo, and, keyof foo ]',
       expected: {
         type: 'JsdocTypeTuple',
         elements: [
@@ -376,7 +382,10 @@ describe('typescript tuple tests', () => {
               value: 'foo'
             }
           }
-        ]
+        ],
+        meta: {
+          bracketSpacing: ' '
+        }
       },
       modes: [
         'typescript'
@@ -440,7 +449,7 @@ describe('typescript tuple tests', () => {
   describe('Tuple with spreaded tuple and typeof', () => {
     testFixture({
       input: '[ tuple, with, typeof foo, and, ...rest ]',
-      stringified: '[tuple, with, typeof foo, and, ...rest]',
+      stringified: '[ tuple, with, typeof foo, and, ...rest ]',
       expected: {
         type: 'JsdocTypeTuple',
         elements: [
@@ -474,7 +483,10 @@ describe('typescript tuple tests', () => {
               position: 'prefix'
             }
           }
-        ]
+        ],
+        meta: {
+          bracketSpacing: ' '
+        }
       },
       modes: [
         'typescript'
@@ -495,7 +507,7 @@ describe('typescript tuple tests', () => {
   describe('Tuple with spreaded tuple and keyof', () => {
     testFixture({
       input: '[ tuple, with, keyof foo, and, ...rest ]',
-      stringified: '[tuple, with, keyof foo, and, ...rest]',
+      stringified: '[ tuple, with, keyof foo, and, ...rest ]',
       expected: {
         type: 'JsdocTypeTuple',
         elements: [
@@ -529,7 +541,10 @@ describe('typescript tuple tests', () => {
               position: 'prefix'
             }
           }
-        ]
+        ],
+        meta: {
+          bracketSpacing: ' '
+        }
       },
       modes: [
         'typescript'
@@ -550,7 +565,7 @@ describe('typescript tuple tests', () => {
   describe('Tuple with spreaded tuple and typeof and keyof', () => {
     testFixture({
       input: '[ tuple, with, typeof foo, keyof foo, and, ...rest ]',
-      stringified: '[tuple, with, typeof foo, keyof foo, and, ...rest]',
+      stringified: '[ tuple, with, typeof foo, keyof foo, and, ...rest ]',
       expected: {
         type: 'JsdocTypeTuple',
         elements: [
@@ -591,7 +606,10 @@ describe('typescript tuple tests', () => {
               position: 'prefix'
             }
           }
-        ]
+        ],
+        meta: {
+          bracketSpacing: ' '
+        }
       },
       modes: [
         'typescript'

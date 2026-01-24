@@ -64,7 +64,7 @@ export function stringifyRules ({
 
     JsdocTypeInfer: (result, transform) => `infer ${transform(result.element)}`,
 
-    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(`,${result.meta?.elementSpacing ?? ' '}`)}]`,
+    JsdocTypeTuple: (result, transform) => `[${result.meta?.bracketSpacing ?? ''}${(result.elements as NonRootResult[]).map(transform).join(`,${result.meta?.elementSpacing ?? ' '}`)}${result.meta?.bracketSpacing ?? ''}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'

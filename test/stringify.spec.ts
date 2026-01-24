@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 import { stringifyRules, stringify } from '../src/index.js'
-import type { RootResult, ObjectResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult.js'
+import type { RootResult, ObjectResult, TupleResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult.js'
 import type { KeyValueResult } from '../src/result/NonRootResult.js'
 import { generate } from '@es-joy/escodegen'
 
@@ -1252,6 +1252,70 @@ describe('`stringifyRules`', () => {
           meta: {
             quote: undefined
           }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single tuple field with bracketSpacing', () => {
+    const expected = `[\nstring\n]`
+    const rootResult: TupleResult = {
+      type: 'JsdocTypeTuple',
+      meta: {
+        bracketSpacing: '\n'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeName',
+          value: 'string'
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform multiple tuple fields with bracketSpacing', () => {
+    const expected = `[\n[ string, number ], [number, string]\n]`
+    const rootResult: TupleResult = {
+      type: 'JsdocTypeTuple',
+      meta: {
+        bracketSpacing: '\n'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeTuple',
+          meta: {
+            bracketSpacing: ' '
+          },
+          elements: [
+            {
+              type: 'JsdocTypeName',
+              value: 'string'
+            },
+            {
+              type: 'JsdocTypeName',
+              value: 'number'
+            }
+          ]
+        },
+        {
+          type: 'JsdocTypeTuple',
+          meta: {
+            bracketSpacing: ''
+          },
+          elements: [
+            {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
+            {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          ]
         }
       ]
     }

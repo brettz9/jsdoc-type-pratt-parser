@@ -307,7 +307,8 @@ export interface TupleResult extends BaseNode {
   type: 'JsdocTypeTuple'
   elements: RootResult[] | KeyValueResult[],
   meta?: {
-    elementSpacing: string
+    elementSpacing?: string,
+    bracketSpacing?: string
   }
 }
 
