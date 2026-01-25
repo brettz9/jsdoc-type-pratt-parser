@@ -4,11 +4,12 @@ describe('typescript objects tests', () => {
   describe('simple object with trailing semicolon separator', () => {
     testFixture({
       input: '{ object: string; }',
-      stringified: '{object: string}',
+      stringified: '{ object: string }',
       expected: {
         type: 'JsdocTypeObject',
         meta: {
-          separator: 'semicolon'
+          separator: 'semicolon',
+          bracketSpacing: ' '
         },
         elements: [
           {
@@ -48,12 +49,13 @@ describe('typescript objects tests', () => {
     // there seems to be a catharsis error: https://github.com/hegemonic/catharsis/blob/222e8fc4350c346b47ca8395c37512290979df12/lib/parser.pegjs#L555
     testFixture({
       input: '{ object?: string, key: string }',
-      stringified: '{object?: string, key: string}',
+      stringified: '{ object?: string, key: string }',
       diffExpected: {
         typescript: {
           type: 'JsdocTypeObject',
           meta: {
-            separator: 'comma'
+            separator: 'comma',
+            bracketSpacing: ' '
           },
           elements: [
             {
@@ -87,7 +89,8 @@ describe('typescript objects tests', () => {
         jsdoc: {
           type: 'JsdocTypeObject',
           meta: {
-            separator: 'comma'
+            separator: 'comma',
+            bracketSpacing: ' '
           },
           elements: [
             {
@@ -194,11 +197,12 @@ describe('typescript objects tests', () => {
   describe('An object an optional field without a type', () => {
     testFixture({
       input: '{ message?} ',
-      stringified: '{message?}',
+      stringified: '{ message? }',
       expected: {
         type: 'JsdocTypeObject',
         meta: {
-          separator: 'comma'
+          separator: 'comma',
+          bracketSpacing: ' '
         },
         elements: [
           {
@@ -387,7 +391,8 @@ describe('typescript objects tests', () => {
         type: 'JsdocTypeObject',
         meta: {
           separator: 'linebreak',
-          propertyIndent: '  '
+          propertyIndent: '  ',
+          bracketSpacing: '\n'
         },
         elements: [
           {
@@ -427,13 +432,14 @@ describe('typescript objects tests', () => {
         `{
   range: boolean
 ,}`,
-      stringified: '{range: boolean}',
+      stringified: '{\nrange: boolean\n}',
       modes: ['typescript', 'jsdoc', 'closure'],
       expected: {
         type: 'JsdocTypeObject',
         meta: {
           separator: 'linebreak',
-          propertyIndent: '  '
+          propertyIndent: '  ',
+          bracketSpacing: '\n'
         },
         elements: [
           {
@@ -460,13 +466,14 @@ describe('typescript objects tests', () => {
         `{
   range: boolean
 ;}`,
-      stringified: '{range: boolean}',
+      stringified: '{\nrange: boolean\n}',
       modes: ['typescript', 'jsdoc', 'closure'],
       expected: {
         type: 'JsdocTypeObject',
         meta: {
           separator: 'linebreak',
-          propertyIndent: '  '
+          propertyIndent: '  ',
+          bracketSpacing: '\n'
         },
         elements: [
           {
@@ -500,7 +507,8 @@ describe('typescript objects tests', () => {
         type: 'JsdocTypeObject',
         meta: {
           separator: 'comma-and-linebreak',
-          propertyIndent: '  '
+          propertyIndent: '  ',
+          bracketSpacing: '\n'
         },
         elements: [
           {
@@ -547,7 +555,8 @@ describe('typescript objects tests', () => {
         type: 'JsdocTypeObject',
         meta: {
           separator: 'semicolon-and-linebreak',
-          propertyIndent: '  '
+          propertyIndent: '  ',
+          bracketSpacing: '\n'
         },
         elements: [
           {

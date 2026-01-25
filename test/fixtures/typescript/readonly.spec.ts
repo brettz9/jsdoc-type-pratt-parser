@@ -11,12 +11,13 @@ describe('typescript readonly tests', () => {
   describe('should parse readonly property', () => {
     testFixture({
       input: '{ readonly x: number }',
-      stringified: '{readonly x: number}',
+      stringified: '{ readonly x: number }',
       modes: ['typescript'],
       expected: {
         type: 'JsdocTypeObject',
         meta: {
-          separator: 'comma'
+          separator: 'comma',
+          bracketSpacing: ' '
         },
         elements: [
           {

@@ -16,12 +16,20 @@ export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, all
     accept: type => type === '{',
     parsePrefix: parser => {
       parser.consume('{')
+
+      // Capture whitespace that was before the current token (after the '[')
+      const initialWhitespace = parser.lexer.current.whitespace ?? ''
+
       const result: ObjectResult = {
         type: 'JsdocTypeObject',
         meta: {
           separator: 'comma'
         },
         elements: []
+      }
+
+      if (initialWhitespace !== '') {
+        result.meta.bracketSpacing = initialWhitespace.charAt(0)
       }
 
       if (!parser.consume('}')) {
